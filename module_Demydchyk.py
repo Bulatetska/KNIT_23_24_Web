@@ -1,6 +1,6 @@
-def add(a, b):
-    return a + b
+def f1(a, b):
+    return (a * b)*2
 
-def sub(a, b):
-    return a - b
+def f2(a, b):
+    return (a * b)/2
 
