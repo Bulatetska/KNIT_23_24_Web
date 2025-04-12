@@ -1,0 +1,7 @@
+<h2>Оновити рік навчання</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Оновити</button>
+</form>
+<a href="{% url 'list_students' %}">Назад до списку</a>

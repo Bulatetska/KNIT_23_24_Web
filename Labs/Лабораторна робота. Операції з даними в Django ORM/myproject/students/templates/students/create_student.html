@@ -1,0 +1,7 @@
+<h2>Додати студента</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Створити</button>
+</form>
+<a href="{% url 'list_students' %}">Переглянути студентів</a>

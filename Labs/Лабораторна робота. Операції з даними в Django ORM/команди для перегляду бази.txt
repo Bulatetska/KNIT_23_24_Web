@@ -1,0 +1,5 @@
+.open db.sqlite3
+.tables
+.schema students_student
+SELECT * FROM students_student;
+.quit

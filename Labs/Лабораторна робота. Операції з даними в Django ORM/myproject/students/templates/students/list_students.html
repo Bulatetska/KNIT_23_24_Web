@@ -1,0 +1,14 @@
+<h2>Список студентів</h2>
+<ul>
+  {% for student in students %}
+    <li>
+      {{ student.full_name }} — {{ student.year }} курс — квиток: {{ student.student_card }}
+    </li>
+  {% empty %}
+    <li>Студентів не знайдено.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'create_student' %}">Додати</a> |
+<a href="{% url 'update_year' %}">Оновити</a> |
+<a href="{% url 'delete_finished' %}">Видалити з 5 курсу</a>

@@ -1,0 +1,6 @@
+<h2>Видалити студентів з 5 курсом</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Видалити</button>
+</form>
+<a href="{% url 'list_students' %}">Назад до списку</a>
