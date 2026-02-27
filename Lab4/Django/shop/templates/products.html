@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <table>
+        <tr>
+            <td>Назва товару</td>
+            <td>Ціна</td>
+            <td>Кількість на складі</td>
+        </tr>
+        {% for product in items %}
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            {% if product.stock == 0 %}
+            <td>Немає в наявності</td>
+            {% else %}
+            <td>{{product.stock}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
