@@ -1,6 +1,7 @@
 #Імпорт візуальної частини
 from tkinter as tk
-from random as rn 
+from random as rn
+
 #Два поля введення чисел
 A =int(input(" " : ))
 B =int(input(" " :  ))
@@ -11,4 +12,6 @@ def minus():
 
 def divide():
 
+#Функція котра робить множення
 def times():
+    return A * B
