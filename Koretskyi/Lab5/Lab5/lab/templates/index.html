@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Головна сторінка{% endblock %}
+
+{% block header %}Ласкаво просимо!{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Головна сторінка</h2>
+
+    <p class="welcome-text">
+        Це головна сторінка нашого сайту. Тут ви можете знайти основну інформацію.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Наші послуги</h3>
+            <p>Ми створюємо сучасні веб-додатки на Django.</p>
+        </div>
+
+        <div class="card">
+            <h3>Наш досвід</h3>
+            <p>Команда має досвід у веб-розробці та створенні API.</p>
+        </div>
+
+        <div class="card">
+            <h3>Зв'язок з нами</h3>
+            <p>Перейдіть на сторінку "Про нас", щоб дізнатися більше.</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
