@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мій Магазин</title>
+</head>
+<body>
+    <h1>Список товарів</h1>
+    <ul>
+        {% for item in items %}
+            <li>
+                <strong>{{ item.name }}</strong> — {{ item.price }} грн 
+                {% if item.stock > 0 %}
+                    (Залишилось: {{ item.stock }} шт.)
+                {% else %}
+                    <span style="color: red;">(Немає в наявності)</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
