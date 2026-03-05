@@ -8,3 +8,7 @@ def products(request):
         {"name":"Мишка", "price": 50, "stock": 0},
     ]
     return render(request, "products.html", {"items": items})
+def index(request):
+    return render(request, "index.html")
+def about(request):
+    return render(request, "about.html")
