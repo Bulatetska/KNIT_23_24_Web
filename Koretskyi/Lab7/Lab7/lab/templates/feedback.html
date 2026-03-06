@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FeedBack</title>
+  <style>
+
+body{
+    font-family: Arial;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+input, textarea{
+    width:300px;
+    padding:6px;
+}
+
+textarea{
+    height:120px;
+}
+
+.rating-input{
+    border:2px solid blue;
+    width:60px;
+}
+
+.error{
+    color:red;
+}
+
+.success{
+    color:green;
+}
+</style>
+</head>
+<body>
+<h2>Feedback Form</h2>
+{% if success %}
+<p class="success">Дані успішно збережено</p>
+{% endif %}
+{% if errors %}
+<div class="errors">
+  <ul>
+    {% for error in errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+<form method="POST">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="form-group">
+    {{ field.label_tag }}
+    <div>{{ field }}</div>
+    <div class="errors">{{ field.errors }}</div>
+  </div>
+  {% endfor %}
+  <button type="submit">Send</button>
+</form>
+</body>
+</html>
