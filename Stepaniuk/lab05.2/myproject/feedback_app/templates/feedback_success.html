@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Submitted</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .feedback-data {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .feedback-data p { margin: 5px 0; }
+        a { display: inline-block; margin-top: 20px; color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="success-message">
+        Дякуємо! Ваше повідомлення успішно відправлено.
+    </div>
+
+    <div class="feedback-data">
+        <h3>Введені дані:</h3>
+        <p><strong>Full Name:</strong> {{ data.full_name }}</p>
+        <p><strong>Email:</strong> {{ data.email }}</p>
+        <p><strong>Message:</strong> {{ data.message }}</p>
+        <p><strong>Rating:</strong> {{ data.rating }}</p>
+    </div>
+
+    <a href="{% url 'feedback' %}">Надіслати ще одне повідомлення</a>
+</body>
+</html>
