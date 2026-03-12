@@ -16,17 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop.views import category, category_products, home, sale
+from shop.views import category, category_products, home, sale, products
 
 
 shop_patterns = [
     path('sale', sale),
     path('<str:category>', category),
     path('<str:category>/<str:product>', category_products),
-
+    
 ]
 
 urlpatterns = [
     path('',home),
+    path('product', products),
     path('shop/', include(shop_patterns))
 ]
