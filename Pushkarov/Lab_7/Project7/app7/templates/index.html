@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab7</title>
+</head>
+<body>
+    <h1>Submit Feedback</h1>
+
+    {% if success %}
+        <p style="color: green;">Thank you! Your feedback has been saved.</p>
+    {% endif %}
+
+    {% if errors %}
+        <ul style="color: red;">
+            {% for field, error_list in errors.items %}
+                <li>{{ field }}: {{ error_list|striptags }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
