@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        input, textarea{
+            width: 300px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .rating-input{
+            border: 2px solid orange;
+        }
+
+        button{
+            padding: 10px 20px;
+            background: green;
+            color: white;
+            border: none;
+        }
+
+        .errors{
+            color: red;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h2>Feedback Form</h2>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {% for field in form %}
+
+        <div>
+
+            <label>{{ field.label }}</label><br>
+
+            {{ field }}
+
+            {% if field.errors %}
+                <div class="errors">
+                    {{ field.errors }}
+                </div>
+            {% endif %}
+
+        </div>
+
+    {% endfor %}
+
+    <button type="submit">Send</button>
+
+</form>
+
+
+{% if errors %}
+
+<div class="errors">
+    <h3>Помилки:</h3>
+
+    <ul>
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>
