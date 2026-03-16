@@ -10,6 +10,7 @@ def index(request):
             message = form.cleaned_data['message']
             rating = form.cleaned_data['rating']
             with open('feetback.txt', 'a') as f:
+                f.write('New Feedback:\n')
                 f.write(f'Full Name: {full_name}\n')
                 f.write(f'Email: {email}\n')
                 f.write(f'Message: {message}\n')
