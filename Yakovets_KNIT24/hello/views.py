@@ -1,6 +1,5 @@
 from django.http import HttpResponse, JsonResponse
 
-# Завдання 1: Система профілів
 def home(request):
     return HttpResponse("<h1>Система профілів користувачів</h1>")
 
@@ -13,7 +12,7 @@ def user_detail(request, username):
 def user_orders(request, username):
     return HttpResponse(f"Замовлення користувача: {username}")
 
-# Завдання 2: Магазин
+
 def shop_home(request):
     return HttpResponse("Ласкаво просимо до нашого магазину")
 
@@ -26,7 +25,7 @@ def product_view(request, category, product):
 def sale_view(request):
     return HttpResponse("Акційні товари магазину")
 
-# Завдання 3: JSON API
+
 def get_users_json(request):
     data = [
         {"name": "Іван", "age": 25},
@@ -42,7 +41,7 @@ def get_user_detail_json(request, name):
     }
     return JsonResponse(data, json_dumps_params={'ensure_ascii': False})
 
-# Завдання 4: Система курсів
+
 def course_list(request):
     return HttpResponse("Доступні курси: Python, Django, Machine Learning")
 
