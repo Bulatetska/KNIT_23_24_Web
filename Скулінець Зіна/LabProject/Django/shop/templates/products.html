@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Магазин</title>
-    <style>
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; }
-        th { background-color: #f4f4f4; }
-    </style>
+    <title>Список товарів</title>
 </head>
 <body>
-    <h1>Список товарів</h1>
-    <table>
-        <tr>
-            <th>Назва товару</th>
-            <th>Ціна</th>
-            <th>Кількість на складі</th>
-        </tr>
-        {% for item in items %}
-        <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.price }}</td>
-            <td>
-                {% if item.stock == 0 %}
-                    <strong>Немає в наявності</strong>
-                {% else %}
-                    {{ item.stock }}
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
+    <h2>Товари в наявності</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Назва товару</th>
+                <th>Ціна</th>
+                <th>Кількість</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    {% if item.stock == 0 %}
+                        <strong>Немає в наявності</strong>
+                    {% else %}
+                        {{ item.stock }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </body>
 </html>
