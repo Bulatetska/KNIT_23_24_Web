@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from shop.views import category, category_products, home, sale, products
+from shop.views import category, category_products, home, sale, products,about
 
 
 shop_patterns = [
@@ -29,5 +29,6 @@ shop_patterns = [
 urlpatterns = [
     path('',home),
     path('product', products),
+    path('about/', about),
     path('shop/', include(shop_patterns))
 ]
