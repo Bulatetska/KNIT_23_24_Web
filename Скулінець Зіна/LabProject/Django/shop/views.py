@@ -62,11 +62,12 @@ class RegistrationForm(forms.Form):
 
         return cleaned_data
 
-    def feedback(request):
-        success = False
+def feedback(request):
         if request.method == "POST":
+            print("Форма відправлена!")  # З'явиться в терміналі PyCharm
             form = FeedbackForm(request.POST)
             if form.is_valid():
+                print("Дані валідні! Записую у файл...")
                 data = form.cleaned_data
                 with open("feedback.txt", "a", encoding="utf-8") as f:
                     f.write(f"Full Name: {data['full_name']}\n")
@@ -74,10 +75,9 @@ class RegistrationForm(forms.Form):
                     f.write(f"Message: {data['message']}\n")
                     f.write(f"Rating: {data['rating']}\n")
                     f.write("-" * 20 + "\n")
-                success = True
-
-                form = FeedbackForm()
+                return render(request, 'shop/feedback.html', {'form': form, 'success': True})
+            else:
+                print("Помилка у формі:", form.errors)  # Покаже, що не так
         else:
             form = FeedbackForm()
-
-        return render(request, 'shop/feedback.html', {'form': form, 'success': success})
+        return render(request, 'shop/feedback.html', {'form': form})
