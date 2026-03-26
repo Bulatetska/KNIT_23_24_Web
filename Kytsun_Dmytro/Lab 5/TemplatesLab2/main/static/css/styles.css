@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+nav {
+    margin: 10px 0;
+}
+
+footer {
+    margin-top: 20px;
+    color: gray;
+}
