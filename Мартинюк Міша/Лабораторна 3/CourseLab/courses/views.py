@@ -7,8 +7,6 @@ def courses_list(request):
 
 def course_detail(request, course_name):
     return HttpResponse(f"Курс: {course_name}")
-course_name = "Python"
-print(f"Ви вибрали курс: {course_name}")
 
 
 def course_modules(request, course_name):
