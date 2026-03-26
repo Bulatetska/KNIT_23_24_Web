@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" type="text/css" href="./style.css">
+        <title>Products</title>
+        <style>
+            h1{
+                margin: 1em;
+            }
+            table{
+                margin: 1em;
+                border-spacing: 0;
+                border: solid 1px black;
+            }
+            
+
+            td,th{
+                border: solid 1px black;
+                margin: 0;
+                padding: 1em 2em;
+                text-align: center;
+            }
+
+            th{
+                background:#657583
+
+            }
+        </style>
+    <head>
+    <body>
+        <h1>Товари на складі </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Назва товару</th>
+                    <th>Ціна</th>
+                    <th>Кількість на складі</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for product in items%}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    
+                    {% if product.stock <= 0 %}
+                        <td>Немає в наявності</td>
+                    {% else %}
+                        <td>{{ product.stock }}</td>
+                    {% endif%}
+                <tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </body>
+</html>
