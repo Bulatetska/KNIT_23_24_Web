@@ -17,4 +17,4 @@ class Course(models.Model):
     duration_hours = models.IntegerField()
 
     def __str__(self):
-        return self.course_name
+        return f"{self.course_name} ({self.duration_hours})"
