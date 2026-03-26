@@ -1,6 +1,8 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 
+# Create your models here.
+from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Student(models.Model):
     full_name = models.CharField(max_length=150)
@@ -12,15 +14,9 @@ class Student(models.Model):
     def __str__(self):
         return self.full_name
 
-
 class Course(models.Model):
     course_name = models.CharField(max_length=200)
     duration_hours = models.PositiveIntegerField()
 
     def __str__(self):
         return self.course_name
-
-
-from django.db import models
-
-# Create your models here.
