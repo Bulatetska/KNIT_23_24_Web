@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <ul>
+            {% for field in form %}
+            <li>{{ field.label_tag }} {{ field }}</li>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Submit">
+        {% if success %}
+            <h1> Congratulations </h1>
+        {% endif %}
+    </form>
+</body>
+</html>
