@@ -1,0 +1,15 @@
+body{
+    background-color:darkgrey;
+    padding: 5px;
+}
+div{
+color: rgb(220, 34, 34);
+padding: 5px;
+border-radius: 15%;
+
+}
+p{
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    size: 17px;
+}

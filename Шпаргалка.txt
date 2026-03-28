@@ -1,12 +1,12 @@
 python manage.py runserver 
 
-Створіть проект UserProfileLab та додаток profiles.
+
 
 
 
 Для створення додатку у проекті застосовується команда
-python manage.py startapp profiles.
+python manage.py startapp shop
 
 
 І після активації віртуального середовища виконаємо наступну команду:
-D:\Django>django-admin startproject UserProfileLab
+D:\Django>django-admin startproject Django
