@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+
+        input, textarea {
+            display: block;
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 300px;
+        }
+
+        .rating-input {
+            border: 2px solid green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Форма зворотного зв'язку</h2>
+
+{% if success %}
+    <p class="success">Дані успішно збережені!</p>
+{% endif %}
+
+{% if errors %}
+    <div class="error">
+        <ul>
+            {% for error_list in errors %}
+                {% for error in error_list %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <label>{{ field.label }}</label>
+        {{ field }}
+    {% endfor %}
+
+    <button type="submit">Відправити</button>
+</form>
+
+</body>
+</html>
