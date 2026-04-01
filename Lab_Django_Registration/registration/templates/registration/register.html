@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+</head>
+<body>
+
+<h1>Форма реєстрації</h1>
+
+{% if message %}
+    <p><b>{{ message }}</b></p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    {% if form.errors %}
+        <p style="color:red;">Дані некоректні</p>
+    {% endif %}
+
+    <button type="submit">Зареєструватися</button>
+</form>
+
+</body>
+</html>

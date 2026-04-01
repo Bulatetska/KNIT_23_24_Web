@@ -1,0 +1,16 @@
+body {
+    font-family: Arial;
+}
+header, nav, main, footer {
+    padding: 15px;
+}
+header {
+    background: lightgray;
+}
+nav {
+    background: whitesmoke;
+}
+footer {
+    background: lightgray;
+    text-align: center;
+}
