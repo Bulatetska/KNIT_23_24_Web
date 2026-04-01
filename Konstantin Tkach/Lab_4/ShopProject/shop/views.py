@@ -7,5 +7,10 @@ def products(request):
         {"name": "Навушники", "price": 200, "stock": 50},
         {"name": "Планшет", "price": 600, "stock": 0},
     ]
-
     return render(request, "shop/products.html", {"items": items})
+
+def index(request):
+    return render(request, "shop/index.html")
+
+def about(request):
+    return render(request, "shop/about.html")
