@@ -1,9 +1,6 @@
-from django.contrib import admin
 from django.urls import path
-from shop import views 
+from shop.views import register
 
 urlpatterns = [
-    path('admin/', admin.site.urls),           
-    path('', views.index, name='index'),        
-    path('about/', views.about, name='about'), 
+    path('register/', register, name='register'),
 ]

@@ -1,7 +1,15 @@
 from django.shortcuts import render
+from .forms import RegistrationForm
 
-def index(request):
-    return render(request, 'index.html')
+def register(request):
+    message = ""
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            message = "Успішна реєстрація"
+        else:
+            message = "Дані некоректні"
+    else:
+        form = RegistrationForm()
 
-def about(request):
-    return render(request, 'about.html')
+    return render(request, 'register.html', {'form': form, 'message': message})
