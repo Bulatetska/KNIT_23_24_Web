@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('full_name', models.CharField(max_length=150)),
                 ('year_of_study', models.IntegerField(validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(5)])),
-                ('student_id', models.IntegerField(max_length=10, primary_key=True, serialize=False)),
+                ('student_id', models.CharField(max_length=10, primary_key=True, serialize=False)),
             ],
         ),
     ]

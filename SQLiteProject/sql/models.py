@@ -10,7 +10,7 @@ class Student(models.Model):
             MaxValueValidator(5)
         ]
     )
-    student_id = models.IntegerField(max_length=10, primary_key=True)
+    student_id = models.CharField(max_length=10, primary_key=True)
 
 class Course(models.Model):
     course_name = models.CharField(max_length=100)
