@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Зворотній зв'язок</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .field { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input, textarea { width: 300px; padding: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        .rating-input { width: 60px; }
+        button { padding: 8px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Форма зворотного зв'язку</h1>
+
+    {% if message %}
+        <p class="success"><strong>{{ message }}</strong></p>
+    {% endif %}
+
+    {% if errors %}
+        <ul class="error">
+            {% for field, error in errors.items %}
+                <li>{{ field }}: {{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="field">
+                <label>{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit">Надіслати</button>
+    </form>
+</body>
+</html>
