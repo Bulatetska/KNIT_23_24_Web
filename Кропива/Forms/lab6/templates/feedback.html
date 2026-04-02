@@ -2,82 +2,74 @@
 <html>
 <head>
     <title>Feedback</title>
-
     <style>
-
-        body{
-            font-family: Arial;
-            margin: 40px;
-        }
-
-        input, textarea{
+        .form-control {
+            display: block;
             width: 300px;
             padding: 8px;
             margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
         }
 
-        .rating-input{
-            border: 2px solid orange;
+        .rating-input {
+            border: 2px solid #4CAF50;
+            background-color: #f0fff0;
         }
 
-        button{
-            padding: 10px 20px;
-            background: green;
-            color: white;
-            border: none;
-        }
-
-        .errors{
+        .error-list {
             color: red;
+            margin-bottom: 15px;
         }
 
+        .feedback-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #4CAF50;
+            background-color: #f9fff9;
+            width: 320px;
+        }
     </style>
-
 </head>
 <body>
 
-<h2>Feedback Form</h2>
+<h2>Leave Feedback</h2>
+
+<!-- Помилки -->
+{% if errors %}
+    <div class="error-list">
+        <ul>
+            {% for field, error_list in errors.items %}
+                {% for error in error_list %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 
 <form method="post">
-
     {% csrf_token %}
 
     {% for field in form %}
-
         <div>
-
             <label>{{ field.label }}</label><br>
-
             {{ field }}
-
-            {% if field.errors %}
-                <div class="errors">
-                    {{ field.errors }}
-                </div>
-            {% endif %}
-
         </div>
-
     {% endfor %}
 
-    <button type="submit">Send</button>
-
+    <button type="submit">Submit</button>
 </form>
 
-
-{% if errors %}
-
-<div class="errors">
-    <h3>Помилки:</h3>
-
-    <ul>
-        {% for error in errors %}
-            <li>{{ error }}</li>
-        {% endfor %}
-    </ul>
-
-</div>
-
+<!-- Відображення відгуку -->
+{% if feedback_data %}
+    <div class="feedback-box">
+        <h3>Your Feedback:</h3>
+        <p><strong>Full Name:</strong> {{ feedback_data.full_name }}</p>
+        <p><strong>Email:</strong> {{ feedback_data.email }}</p>
+        <p><strong>Message:</strong> {{ feedback_data.message }}</p>
+        <p><strong>Rating:</strong> {{ feedback_data.rating }}</p>
+    </div>
 {% endif %}
 
 </body>
