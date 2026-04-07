@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Головна{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Вітання{% endblock %}</h1>
+    </header>
+    <nav>
+        <a href="/">Головна</a> | <a href="/about/">Про нас</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Django</p>
+    </footer>
+</body>
+</html>

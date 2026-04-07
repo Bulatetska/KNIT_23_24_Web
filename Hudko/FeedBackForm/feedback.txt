@@ -1,0 +1,15 @@
+Full Name: Ivan Hudko
+Email: test.user@gmail.com
+Message: dsfsfjdskfnkjadsf
+Rating: 5
+--------------------
+Full Name: Ivan Hudko
+Email: test.user@gmail.com
+Message: asdSDS
+Rating: 5
+--------------------
+Full Name: Ivan Hudko
+Email: test.user@gmail.com
+Message: wwqe
+Rating: 1
+--------------------

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django ORM Demo</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; padding: 20px; }
+        section { margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+        h2 { color: #2c3e50; }
+        pre { background: #f4f4f4; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Демонстрація Django ORM операцій</h1>
+
+    <section>
+        <h2>1. Студенти 3-го курсу</h2>
+        <ul>
+            {% for s in students_3rd_year %}
+                <li>{{ s.full_name }} (Курс: {{ s.year_of_study }})</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>2. Перевірка номера квитка (TK-12345)</h2>
+        <p><strong>Результат:</strong> {{ check_result }}</p>
+    </section>
+
+    <section>
+        <h2>3. Кількість студентів по курсах</h2>
+        <table border="1">
+            <tr><th>Рік навчання</th><th>Кількість</th></tr>
+            {% for stat in grouping_stats %}
+            <tr>
+                <td>{{ stat.year_of_study }}</td>
+                <td>{{ stat.total }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <section>
+        <h2>4. Результат Raw SQL (> 2 курсу)</h2>
+        <ul>
+            {% for s in raw_students %}
+                <li>{{ s.full_name }} — {{ s.year_of_study }} курс</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>5. Курси > 100 годин (Словник)</h2>
+        <pre>{{ courses_dict }}</pre>
+    </section>
+</body>
+</html>
