@@ -70,6 +70,9 @@ def raw_function():
     for student in students:
         print(student)
 
-def course_dictionary():
-    courses = Course.objects.all()
-    return dict(zip(courses.course_name, courses.duration_hours))
+def get_long_courses():
+    courses = Course.objects.filter(duration_hours__gt=100)
+    result = {}
+    for course in courses:
+        result[course.course_name] = course.duration_hours
+    return result
