@@ -14,6 +14,16 @@ def create_students():
         year_of_study=3,
         stud_id="S987654321"
     )
+    Student.objects.get_or_create(
+        name="Олег Жуков",
+        year_of_study=1,
+        stud_id="S198765432"
+    )
+    Student.objects.get_or_create(
+        name="Маргарита Сидоренко",
+        year_of_study=4,
+        stud_id="S298765431"
+    )
 
     Student.objects.get_or_create(
         name="Петро Іваненко",
