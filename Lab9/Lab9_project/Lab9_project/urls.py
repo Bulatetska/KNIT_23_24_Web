@@ -19,4 +19,6 @@ from django.urls import path
 from Lab9_app import views
 urlpatterns = [
     path('', views.index),
+    path('delete/', views.delete_students, name= "delete"),
+    path('sort/', views.sort_students, name = 'sort'),
 ]

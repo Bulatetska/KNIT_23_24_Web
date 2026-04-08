@@ -8,4 +8,3 @@ class student_info(models.Model):
 class Course(models.Model):
     course_name = models.CharField(max_length=50)
     duration_hours = models.DurationField()
-
