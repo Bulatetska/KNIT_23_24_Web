@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+</head>
+<body>
+
+<h2>Список студентів</h2>
+
+<hr>
+
+<ul>
+    {% for student in students %}
+        <li>
+            {{ student.name }} - {{ student.year_of_study }} курс
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
