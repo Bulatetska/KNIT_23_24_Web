@@ -5,8 +5,8 @@ python manage.py runserver
 
 
 Для створення додатку у проекті застосовується команда
-python manage.py startapp shop
+python manage.py startapp test
 
 
 І після активації віртуального середовища виконаємо наступну команду:
-D:\Django>django-admin startproject Django
+D:\Django>django-admin startproject project
