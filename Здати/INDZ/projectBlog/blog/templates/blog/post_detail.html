@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <article>
+        <h1 class="display-4">{{ post.title }}</h1>
+        <p class="text-muted">Опубліковано {{ post.created_at }} | Автор: <strong>{{ post.author_name }}</strong></p>
+        <hr>
+        <div class="lead" style="white-space: pre-wrap;">{{ post.content }}</div>
+    </article>
+
+    <section class="mt-5">
+        <h3>Коментарі ({{ post.comments.count }})</h3>
+        {% for comment in post.comments.all %}
+            <div class="alert alert-light border mb-2">
+                <strong>{{ comment.author_name }}</strong> <small class="text-muted">{{ comment.created_at }}</small>
+                <p class="mb-0">{{ comment.content }}</p>
+            </div>
+        {% empty %}
+            <p>Коментарів ще немає.</p>
+        {% endfor %}
+
+        <div class="card mt-4 p-3">
+            <h5>Залишити коментар:</h5>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-secondary">Надіслати</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}

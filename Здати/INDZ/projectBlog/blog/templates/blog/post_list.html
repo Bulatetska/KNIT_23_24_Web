@@ -1,0 +1,62 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="mb-4">Останні публікації</h1>
+    
+    <!-- Форма пошуку -->
+    <form method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Пошук по заголовку..." value="{{ request.GET.q }}">
+            <button class="btn btn-primary" type="submit">Пошук</button>
+        </div>
+    </form>
+    
+    <!-- Список постів -->
+    {% for post in page_obj %}
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <a href="{% url 'post_detail' pk=post.pk %}" class="text-decoration-none">{{ post.title }}</a>
+                </h2>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    Автор: {{ post.author_name }} | {{ post.created_at|date:"d.m.Y H:i" }}
+                </h6>
+                <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                <small class="text-muted">💬 Коментарів: {{ post.comments.count }}</small><br>
+                <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-sm btn-outline-primary mt-2">Читати далі →</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Постів поки немає. Будьте першим, хто щось напише!</p>
+    {% endfor %}
+
+    <!-- Пагінація -->
+    {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Перша</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">← Попередня</a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <span class="page-link">Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Наступна →</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Остання</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+{% endblock %}

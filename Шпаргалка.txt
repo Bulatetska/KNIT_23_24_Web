@@ -10,3 +10,6 @@ python manage.py startapp test
 
 І після активації віртуального середовища виконаємо наступну команду:
 D:\Django>django-admin startproject project
+
+
+міграція python manage.py migrate
