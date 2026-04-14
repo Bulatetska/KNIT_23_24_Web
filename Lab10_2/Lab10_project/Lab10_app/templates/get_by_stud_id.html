@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Перевірка студента</title>
+</head>
+<body>
+
+<h2>Перевірка студента</h2>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <input type="text" name="stud_id" placeholder="Введіть номер студентського" required>
+    
+    <button type="submit">Перевірити</button>
+</form>
+
+<hr>
+
+{% if message %}
+    <h3>{{ message }}</h3>
+{% endif %}
+
+</body>
+</html>

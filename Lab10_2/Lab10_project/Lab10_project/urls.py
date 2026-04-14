@@ -20,4 +20,6 @@ from Lab10_app import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('only_3_year/', views.only_3_year_students, name='only_3_year_students'),
+    path('check_student/', views.check_student, name='check_student'),
 ]

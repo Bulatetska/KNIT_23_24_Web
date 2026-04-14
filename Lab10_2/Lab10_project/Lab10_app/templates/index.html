@@ -5,14 +5,42 @@
 </head>
 <body>
 
-<h2>Список студентів</h2>
-
-<hr>
+    <form action="/only_3_year/" method="post">
+        {% csrf_token %}
+        <button type="submit">Вивести лише 3-й курс</button>
+    </form>
+    
+    <form action="/check_student/" method="post">
+        {% csrf_token %}
+        <button type="submit">Перевірити наявність</button>
+    </form>
+    
+    <form action="/get_2_or_more_by_year/" method="post">
+        {% csrf_token %}
+        <button type="submit">Відібрати за роком навчання(більше 2)</button>
+    </form>
+    
+    <form action="/courses_more_than_100/" method="post">
+        {% csrf_token %}
+        <button type="submit">Відібрати курси за кількістю годин(більше 100)</button>
+    </form>
+    
+    <hr>
+<h2>{{ spiski }}</h2>
 
 <ul>
     {% for student in students %}
+    <li>
+        {{ student.name }} - {{ student.year_of_study }} курс - {{ student.stud_id }}
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>{{ spiski2 }}</h2>
+<ul>
+    {% for course in courses %}
         <li>
-            {{ student.name }} - {{ student.year_of_study }} курс
+            {{ course.name }} - {{ course.hours }} годин
         </li>
     {% endfor %}
 </ul>
