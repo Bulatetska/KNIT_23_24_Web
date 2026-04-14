@@ -22,4 +22,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('only_3_year/', views.only_3_year_students, name='only_3_year_students'),
     path('check_student/', views.check_student, name='check_student'),
+    path('grouping/', views.grouping, name='grouping'),
+    path('get_2_or_more_by_year/', views.get_2_or_more_by_year, name='get_2_or_more_by_year'),
+    path('courses_more_than_100/', views.get_long_courses, name='get_long_courses'),
 ]

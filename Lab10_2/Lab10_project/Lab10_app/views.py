@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Student, Course
-
+from collections import defaultdict
 def create_all():
     if Student.objects.count() == 0:
         Student.objects.create(name="Аліса", year_of_study=2, stud_id="S001")
@@ -17,14 +17,12 @@ def create_all():
         Student.objects.create(name="Любомир", year_of_study=5, stud_id="S012")
     if Course.objects.count() == 0:
         Course.objects.create(name="Математика", hours=120)
-        Course.objects.create(name="Фізика", hours=100)
+        Course.objects.create(name="Фізика", hours=105)
         Course.objects.create(name="Інформатика", hours=150)
         Course.objects.create(name="Хімія", hours=80)
         Course.objects.create(name="Біологія", hours=90)
 
 def index(request):
-    all = Student.objects.all()
-    all.delete()
     create_all()
     students = Student.objects.all()
     courses = Course.objects.all()
@@ -49,3 +47,27 @@ def check_student(request):
     return render(request, "get_by_stud_id.html", {
         "message": message
     })
+
+def grouping(request):
+    create_all()
+    
+    students = Student.objects.all().order_by('year_of_study')
+    
+    grouped = defaultdict(list)
+    
+    for s in students:
+        grouped[s.year_of_study].append(s)
+    
+    return render(request, 'grouping.html', {
+        'grouped': dict(grouped)
+    })
+
+def get_2_or_more_by_year(request):
+    create_all()
+    students = Student.objects.raw(    "SELECT * FROM Lab10_app_student WHERE year_of_study > 1")
+    return render(request, 'index.html', {'spiski': 'Студенти 2-го курсу і вище', 'students': students})
+
+def get_long_courses(request):
+    courses = Course.objects.filter(hours__gt=100).values('name', 'hours')
+    ret = list(courses)
+    return render(request, 'index.html', {'spiski': 'Курси з кількістю годин більше 100', 'courses': ret})

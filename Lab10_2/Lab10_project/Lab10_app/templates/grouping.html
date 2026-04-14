@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Групування</title>
+</head>
+<body>
+
+{% for year, students in grouped.items %}
+    <h2>Студенти {{ year }}-го курсу (Кількість: {{ students|length }})</h2>
+    
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+</body>
+</html>

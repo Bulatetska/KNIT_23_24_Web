@@ -14,6 +14,11 @@
         {% csrf_token %}
         <button type="submit">Перевірити наявність</button>
     </form>
+
+    <form action="/grouping/" method="post">
+        {% csrf_token %}
+        <button type="submit">Групування студентів</button>
+    </form>
     
     <form action="/get_2_or_more_by_year/" method="post">
         {% csrf_token %}
@@ -31,7 +36,7 @@
 <ul>
     {% for student in students %}
     <li>
-        {{ student.name }} - {{ student.year_of_study }} курс - {{ student.stud_id }}
+        {{ student.name }} - {{ student.year_of_study }} курс
     </li>
     {% endfor %}
 </ul>
