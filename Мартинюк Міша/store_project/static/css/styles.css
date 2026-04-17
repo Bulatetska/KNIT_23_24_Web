@@ -5,8 +5,11 @@ body {
     color: #222;
 }
 
-header, nav, main, footer {
-    max-width: 900px;
+header,
+nav,
+main,
+footer {
+    max-width: 960px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -18,6 +21,9 @@ header {
 
 nav {
     background-color: #e9eef8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 
 nav a {
@@ -34,4 +40,99 @@ main {
 footer {
     font-size: 14px;
     color: #555;
+}
+
+.button-link,
+button {
+    display: inline-block;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1f4b99;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-form input,
+.content-form input,
+.content-form textarea,
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b8c2d1;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.blog-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.post-list {
+    display: grid;
+    gap: 18px;
+}
+
+.post-card,
+.comment-card,
+.post-detail {
+    border: 1px solid #d7dfec;
+    border-radius: 8px;
+    padding: 18px;
+    background-color: #fcfdff;
+}
+
+.post-card h2,
+.comments-section h2,
+.comment-form-section h2 {
+    margin-top: 0;
+}
+
+.post-meta {
+    color: #5f6b7a;
+    font-size: 14px;
+}
+
+.content-form {
+    max-width: 720px;
+}
+
+.form-field {
+    margin-bottom: 16px;
+}
+
+.field-error {
+    color: #b42318;
+    margin: 6px 0 0;
+}
+
+.comments-section,
+.comment-form-section {
+    margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+    header,
+    nav,
+    main,
+    footer {
+        padding: 16px;
+    }
+
+    .blog-toolbar {
+        align-items: stretch;
+    }
 }

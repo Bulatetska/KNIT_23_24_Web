@@ -1,4 +1,6 @@
-from .models import Student
+from django.db.models import Count
+
+from .models import Course, Student
 
 
 def create_default_students():
@@ -40,3 +42,35 @@ def delete_graduated_students():
 
 def get_students_ordered_by_year_desc():
     return Student.objects.order_by("-year_of_study", "full_name")
+
+
+def get_third_year_students():
+    return Student.objects.filter(year_of_study=3).values("full_name", "year_of_study")
+
+
+def check_student_exists(student_id):
+    if Student.objects.filter(student_id=student_id).exists():
+        return f"Студент з номером квитка {student_id} існує."
+    return f"Студента з номером квитка {student_id} не знайдено."
+
+
+def get_student_count_by_year():
+    return Student.objects.values("year_of_study").annotate(total=Count("id")).order_by(
+        "year_of_study"
+    )
+
+
+def get_students_with_year_above_two_raw():
+    sql = (
+        "SELECT id, full_name, year_of_study, student_id "
+        "FROM shop_student WHERE year_of_study > %s"
+    )
+    return Student.objects.raw(sql, [2])
+
+
+def get_long_courses_as_dict():
+    return list(
+        Course.objects.filter(duration_hours__gt=100)
+        .values("course_name", "duration_hours")
+        .order_by("course_name")
+    )

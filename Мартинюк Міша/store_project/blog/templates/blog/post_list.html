@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Блог{% endblock %}
+{% block header %}Публікації блогу{% endblock %}
+{% block content %}
+<section class="blog-toolbar">
+    <a class="button-link" href="{% url 'blog:post_create' %}">Створити новий пост</a>
+    <form method="get" class="search-form">
+        <input type="text" name="q" value="{{ query }}" placeholder="Пошук за заголовком">
+        <button type="submit">Пошук</button>
+    </form>
+</section>
+
+{% if posts %}
+    <div class="post-list">
+        {% for post in posts %}
+        <article class="post-card">
+            <h2><a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a></h2>
+            <p class="post-meta">Автор: {{ post.author_name }} | {{ post.created_at|date:"d.m.Y H:i" }}</p>
+            <p>{{ post.content|truncatechars:160 }}</p>
+            <p class="post-meta">Коментарів: {{ post.comment_count }}</p>
+            <a href="{% url 'blog:post_detail' post.id %}">Читати далі</a>
+        </article>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Пости поки що відсутні.</p>
+{% endif %}
+{% endblock %}

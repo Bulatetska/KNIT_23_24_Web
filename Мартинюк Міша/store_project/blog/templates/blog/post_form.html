@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Новий пост{% endblock %}
+{% block header %}Створення нового поста{% endblock %}
+{% block content %}
+<form method="post" class="content-form">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% for error in field.errors %}
+        <p class="field-error">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit">Опублікувати</button>
+</form>
+{% endblock %}
