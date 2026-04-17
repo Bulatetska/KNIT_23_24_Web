@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Зворотний зв'язок{% endblock %}
+{% block header %}Форма зворотного зв'язку{% endblock %}
+{% block content %}
+<style>
+    .feedback-form {
+        max-width: 640px;
+    }
+
+    .form-field {
+        margin-bottom: 16px;
+    }
+
+    .form-field label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+    .form-field input,
+    .form-field textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #b8c2d1;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    .form-field textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    .rating-input {
+        max-width: 120px;
+        background-color: #eef4ff;
+        border: 1px solid #1f4b99;
+    }
+
+    .error-list {
+        color: #b42318;
+        background: #fef3f2;
+        padding: 12px 18px;
+        border-radius: 6px;
+    }
+
+    .success-message {
+        color: #0f5132;
+        background: #d1e7dd;
+        padding: 12px 18px;
+        border-radius: 6px;
+    }
+
+    .submit-button {
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        background-color: #1f4b99;
+        color: #fff;
+        cursor: pointer;
+    }
+</style>
+
+<p>Залиште свій відгук через форму нижче.</p>
+
+{% if message == 'Відгук успішно збережено' %}
+<p class="success-message">{{ message }}</p>
+{% endif %}
+
+{% if form.errors %}
+<ul class="error-list">
+    {% for field in form %}
+        {% for error in field.errors %}
+        <li>{{ field.label }}: {{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="post" class="feedback-form">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-field">
+        {{ field.label_tag }}
+        {{ field }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="submit-button">Надіслати</button>
+</form>
+{% endblock %}
