@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+{% block header %}{{ post.title }}{% endblock %}
+{% block content %}
+<article class="post-detail">
+    <p class="post-meta">Автор: {{ post.author_name }} | {{ post.created_at|date:"d.m.Y H:i" }}</p>
+    <div class="post-body">{{ post.content|linebreaks }}</div>
+</article>
+
+<section class="comments-section">
+    <h2>Коментарі</h2>
+    {% if post.comments.all %}
+        {% for comment in post.comments.all %}
+        <div class="comment-card">
+            <p class="post-meta">{{ comment.author_name }} | {{ comment.created_at|date:"d.m.Y H:i" }}</p>
+            <p>{{ comment.content|linebreaks }}</p>
+        </div>
+        {% empty %}
+        <p>Коментарів ще немає.</p>
+        {% endfor %}
+    {% endif %}
+</section>
+
+<section class="comment-form-section">
+    <h2>Додати коментар</h2>
+    <form method="post" action="{% url 'blog:add_comment' post.id %}" class="content-form">
+        {% csrf_token %}
+        {% for field in comment_form %}
+        <div class="form-field">
+            {{ field.label_tag }}
+            {{ field }}
+            {% for error in field.errors %}
+            <p class="field-error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button type="submit">Надіслати коментар</button>
+    </form>
+</section>
+{% endblock %}
