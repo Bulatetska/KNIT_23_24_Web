@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p><small style="color: gray;">Опубліковано: {{ post.created_at|date:"d.m.Y H:i" }}</small></p>
+    <p>{{ post.content }}</p>
+
+    <hr>
+
+    <h3>Коментарі:</h3>
+    {% for comment in post.comments.all %}
+        <div style="margin-bottom: 15px; border-left: 3px solid #ccc; padding-left: 10px;">
+            <p>
+                <strong>{{ comment.author_name }}</strong>
+                <small style="color: gray;">({{ comment.created_at|date:"d.m.Y H:i" }})</small>
+            </p>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% empty %}
+        <p>Коментарів ще немає. Будьте першим!</p>
+    {% endfor %}
+
+    <hr>
+
+    <h4>Додати коментар:</h4>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Додати коментар</button>
+    </form>
+
+{% endblock %}

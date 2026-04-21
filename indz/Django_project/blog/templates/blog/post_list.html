@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>Пости</h1>
+
+    {% for post in posts %}
+        <div style="margin-bottom: 30px;">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+
+            <p><small style="color: gray;">Опубліковано: {{ post.created_at|date:"d.m.Y H:i" }}</small></p>
+
+            <p>{{ post.content|truncatewords:30 }}</p>
+
+            <p>
+                <strong>Автор:</strong> {{ post.author_name }} |
+                <strong>Коментарів:</strong> {{ post.comments.count }}
+            </p>
+
+            <hr>
+        </div>
+    {% empty %}
+        <p>Постів поки що немає.</p>
+    {% endfor %}
+
+{% endblock %}

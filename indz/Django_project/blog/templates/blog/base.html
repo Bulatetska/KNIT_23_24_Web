@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>INDZsa Blog</title></head>
+<body>
+    <nav>
+        <a href="{% url 'post_list' %}">Головна</a> |
+        <a href="{% url 'post_new' %}">Написати пост</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
