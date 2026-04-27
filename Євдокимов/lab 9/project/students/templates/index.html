@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Студенти</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #1e1e2f;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        .box {
+            background: #2c2c3c;
+            padding: 20px;
+            margin: 20px auto;
+            width: 320px;
+            border-radius: 10px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 8px;
+            width: 90%;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px;
+            width: 95%;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            width: auto;
+            padding: 5px 10px;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        .student {
+            background: #3a3a50;
+            margin: 10px auto;
+            padding: 10px;
+            width: 320px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📚 Студенти</h1>
+
+<!-- ➕ ДОДАТИ -->
+<div class="box">
+    <form method="post">
+        {% csrf_token %}
+        <h3>Додати</h3>
+        <input name="name" placeholder="ПІБ">
+        <input name="year" placeholder="Рік">
+        <input name="ticket" placeholder="Квиток">
+        <button name="add">Додати</button>
+    </form>
+</div>
+
+<!-- 🔄 ОНОВИТИ -->
+<div class="box">
+    <form method="post">
+        {% csrf_token %}
+        <h3>Оновити</h3>
+        <input name="ticket" placeholder="Квиток">
+        <input name="year" placeholder="Новий рік">
+        <button name="update">Оновити</button>
+    </form>
+</div>
+
+<h2>📊 Список</h2>
+
+{% for s in students %}
+<div class="student">
+    <div>
+        <b>{{ s.name }}</b><br>
+        {{ s.year }} курс<br>
+        {{ s.ticket }}
+    </div>
+
+    <!-- ❌ ВИДАЛИТИ КОНКРЕТНОГО -->
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="ticket" value="{{ s.ticket }}">
+        <button class="delete-btn" name="delete_one">🗑</button>
+    </form>
+</div>
+{% endfor %}
+
+</body>
+</html>

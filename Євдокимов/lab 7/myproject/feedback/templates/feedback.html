@@ -1,0 +1,38 @@
+<!-- feedback/templates/feedback.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback</title>
+
+    <style>
+        .rating-input {
+            border: 2px solid blue;
+        }
+
+        input, textarea {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Feedback Form</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <label>{{ field.label }}</label>
+        {{ field }}
+        {{ field.errors }}
+    {% endfor %}
+
+    <button type="submit">Відправити</button>
+</form>
+
+</body>
+</html>

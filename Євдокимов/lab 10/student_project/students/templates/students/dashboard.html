@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Студенти</title>
+
+    <style>
+        body { font-family: Arial; background:#f4f6f8; padding:20px; }
+        .container { max-width:800px; margin:auto; }
+        .card { background:white; padding:15px; margin-bottom:20px; border-radius:10px; }
+        input, button { padding:8px; margin-top:5px; }
+        button { background:blue; color:white; border:none; }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎓 Студенти</h1>
+
+<!-- 🔍 Пошук -->
+<div class="card">
+    <h2>Пошук студента</h2>
+
+    <form method="get">
+        <input type="text" name="ticket" placeholder="Номер квитка">
+        <button type="submit">Знайти</button>
+    </form>
+
+    {% if found_student %}
+        <p>
+            <b>{{ found_student.full_name }}</b><br>
+            Курс: {{ found_student.year }}<br>
+            Квиток: {{ found_student.ticket_number }}
+        </p>
+    {% endif %}
+
+    {% if message %}
+        <p style="color:red">{{ message }}</p>
+    {% endif %}
+</div>
+
+<!-- 🎓 3 курс -->
+<div class="card">
+    <h2>Студенти 3 курсу</h2>
+    <ul>
+        {% for s in third_year %}
+            <li>{{ s.full_name }} — {{ s.ticket_number }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- 📊 Групування -->
+<div class="card">
+    <h2>Кількість студентів</h2>
+    <ul>
+        {% for g in grouped %}
+            <li>Курс {{ g.year }}: {{ g.total }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- 💾 RAW SQL -->
+<div class="card">
+    <h2>Студенти (курс > 2)</h2>
+    <ul>
+        {% for s in raw_students %}
+            <li>{{ s.full_name }} — {{ s.ticket_number }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- 📚 Курси -->
+<div class="card">
+    <h2>Курси > 100 год</h2>
+    <ul>
+        {% for c in courses %}
+            <li>{{ c.name }} — {{ c.hours }} год</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</div>
+
+</body>
+</html>
