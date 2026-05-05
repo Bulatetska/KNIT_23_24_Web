@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>Опублікував: <b>{{ post.author_name }}</b> ({{ post.created_at }})</p>
+    <div>{{ post.content }}</div>
+    
+    <hr>
+    <h3>Коментарі:</h3>
+    {% for comment in post.comments.all %}
+        <p><b>{{ comment.author_name }}</b>: {{ comment.content }} 
+           <small>({{ comment.created_at }})</small>
+        </p>
+    {% empty %}
+        <p>Коментарів поки немає.</p>
+    {% endfor %}
+
+    <hr>
+    <h4>Залишити коментар:</h4>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Надіслати</button>
+    </form>
+{% endblock %}

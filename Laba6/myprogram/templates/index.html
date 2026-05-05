@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Керування студентами</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        table { border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ccc; }
+        .add-form { margin-bottom: 30px; padding: 15px; border: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <h1>Керування студентами</h1>
+
+    <div class="add-form">
+        <h3>Додати нового студента:</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="full_name" placeholder="ПІБ" required>
+            <input type="number" name="year" placeholder="Рік навчання" required>
+            <input type="text" name="ticket" placeholder="Номер квитка" required>
+            <button type="submit" name="add_student">Додати студента</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <h3>Список студентів (відсортований):</h3>
+    <table>
+        <tr>
+            <th>ПІБ</th>
+            <th>Курс</th>
+            <th>Квиток</th>
+            <th>Дія</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.full_name }}</td>
+            <td>
+                <form method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="ticket_number" value="{{ student.ticket }}">
+                    <input type="number" name="new_year" value="{{ student.year }}" style="width: 50px;">
+                    <button type="submit" name="update_year">Оновити рік</button>
+                </form>
+            </td>
+            <td>{{ student.ticket }}</td>
+            <td>
+                <form method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="student_id" value="{{ student.id }}">
+                    <button type="submit" name="delete_student">Видалити</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Студентів поки немає. Додайте першого!</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Гостьовий блог</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'post_list' %}">Головна</a> | 
+        <a href="{% url 'post_create' %}">Додати пост</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
