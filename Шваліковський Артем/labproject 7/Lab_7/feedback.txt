@@ -1,0 +1,14 @@
+Full Name: Test
+Email: 
+Message: I liked your service
+Rating: 5
+
+-----------------
+
+Full Name: Test 1
+Email: emeil@gmail.com
+Message: Service been great
+Rating: 3
+
+-----------------
+
