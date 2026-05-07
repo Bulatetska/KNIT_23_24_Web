@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+</head>
+<body>
+    <h2>Залиште свій відгук</h2>
+
+    <form method="post">
+        {% csrf_token %} <!-- Захист Django від хакерів -->
+
+        {% if form.errors %}
+            <div style="color: red;">
+                Будь ласка, виправте помилки нижче.
+            </div>
+        {% endif %}
+
+        {% for field in form %}
+            <div style="margin-bottom: 15px;">
+                {{ field.label_tag }} <br>
+                {{ field }}
+                {% if field.errors %}
+                    <div style="color: red;">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Зберегти у файл</button>
+    </form>
+</body>
+</html>
