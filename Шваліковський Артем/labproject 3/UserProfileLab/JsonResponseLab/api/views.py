@@ -11,6 +11,12 @@ users = {
         "name": "Марія",
         "age": 30,
         "orders": ["Навушники", "Планшет"]
+    },
+    
+    "Артур": {
+        "name": "Артур",
+        "age": 18,
+        "orders": ["Ком'ютер", "Мишка"]
     }
 }
 
@@ -18,7 +24,8 @@ def users_list(request):
 
     data = [
         {"name": "Іван", "age": 25},
-        {"name": "Марія", "age": 30}
+        {"name": "Марія", "age": 30},
+        {"name": "Артур", "age": 18}
     ]
 
     return JsonResponse(data, safe=False)
