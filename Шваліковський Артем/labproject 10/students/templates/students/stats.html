@@ -1,0 +1,7 @@
+<h2>Кількість студентів по курсах</h2>
+
+<ul>
+    {% for item in data %}
+        <li>Курс {{ item.year_of_study }}: {{ item.count }} студентів</li>
+    {% endfor %}
+</ul>

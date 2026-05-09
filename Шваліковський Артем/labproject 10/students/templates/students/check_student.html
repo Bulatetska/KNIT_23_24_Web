@@ -1,0 +1,11 @@
+<h2>Перевірка студента</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="student_id" placeholder="Student ID">
+    <button type="submit">Перевірити</button>
+</form>
+
+{% if result %}
+    <p><b>{{ result }}</b></p>
+{% endif %}

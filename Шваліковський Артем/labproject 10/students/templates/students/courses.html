@@ -1,0 +1,7 @@
+<h2>Курси > 100 годин</h2>
+
+<ul>
+    {% for name, hours in courses.items %}
+        <li>{{ name }} - {{ hours }} годин</li>
+    {% endfor %}
+</ul>

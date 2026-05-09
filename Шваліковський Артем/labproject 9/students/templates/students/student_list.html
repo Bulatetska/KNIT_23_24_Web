@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Студенти</title>
+</head>
+<body>
+
+    <h1>Список студентів</h1>
+
+    <ul>
+    {% for student in students %}
+
+        <li>
+            {{ student.full_name }} |
+            {{ student.year_of_study }} курс |
+            {{ student.student_id }}
+
+            <!-- ВИДАЛЕННЯ -->
+            <a href="{% url 'delete_student' student.id %}">
+                🗑 Видалити
+            </a>
+
+            <!-- ФОРМА ОНОВЛЕННЯ -->
+            <form method="post" action="{% url 'update_year' student.id %}" style="display:inline;">
+                {% csrf_token %}
+
+                <input type="number" name="year" min="1" max="5" value="{{ student.year_of_study }}">
+
+                <button type="submit">Оновити</button>
+            </form>
+
+        </li>
+
+    {% endfor %}
+</ul>
+
+    <hr>
+
+    <h2>Додати студента</h2>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Додати
+        </button>
+
+    </form>
+
+</body>
+</html>

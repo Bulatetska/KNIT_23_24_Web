@@ -1,0 +1,7 @@
+<h2>Студенти 3 курсу</h2>
+
+<ul>
+    {% for s in students %}
+        <li>{{ s.full_name }} - {{ s.year_of_study }} курс</li>
+    {% endfor %}
+</ul>
