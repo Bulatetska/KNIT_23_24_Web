@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div style="background:white; padding:30px; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    <h1>{{ post.title }}</h1>
+    <p style="color:#888; margin:10px 0;">✍️ {{ post.author_name }} | 📅 {{ post.created_at|date:"d.m.Y H:i" }}</p>
+    <hr style="margin:15px 0; border:none; border-top:1px solid #eee;">
+    <p style="line-height:1.8; font-size:16px;">{{ post.content }}</p>
+</div>
+
+<div style="margin-top:30px;">
+    <h2>💬 Коментарі ({{ comments.count }})</h2>
+    
+    {% if comments %}
+        {% for comment in comments %}
+        <div style="background:white; padding:15px; margin:10px 0; border-radius:8px; border-left:4px solid #27ae60;">
+            <strong>{{ comment.author_name }}</strong>
+            <span style="color:#888; font-size:12px; margin-left:10px;">{{ comment.created_at|date:"d.m.Y H:i" }}</span>
+            <p style="margin-top:8px;">{{ comment.content }}</p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p style="color:#888;">Коментарів ще немає. Будьте першим!</p>
+    {% endif %}
+
+    <div style="background:white; padding:20px; margin-top:20px; border-radius:8px;">
+        <h3>Залишити коментар</h3>
+        <form method="POST" action="/post/{{ post.id }}/comment/">
+            {% csrf_token %}
+            {% for field in form %}
+            <div style="margin:10px 0;">
+                <label>{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <p style="color:red;">{{ field.errors }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-green">Додати коментар</button>
+        </form>
+    </div>
+</div>
+
+<a href="/" style="display:inline-block; margin-top:20px; color:#2c3e50;">← Назад до списку</a>
+{% endblock %}

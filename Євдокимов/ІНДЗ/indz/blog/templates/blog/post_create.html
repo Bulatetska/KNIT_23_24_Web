@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Новий пост{% endblock %}
+
+{% block content %}
+<div style="background:white; padding:30px; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    <h1>✏️ Новий пост</h1>
+    <form method="POST" style="margin-top:20px;">
+        {% csrf_token %}
+        {% for field in form %}
+        <div style="margin:15px 0;">
+            <label style="font-weight:bold;">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <p style="color:red;">{{ field.errors }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-green">Опублікувати</button>
+        <a href="/" class="btn" style="margin-left:10px;">Скасувати</a>
+    </form>
+</div>
+{% endblock %}
