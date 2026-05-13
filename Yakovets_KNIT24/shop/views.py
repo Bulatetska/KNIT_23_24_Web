@@ -1,23 +1,26 @@
-from django.shortcuts import render
-from .forms import FeedbackForm
+from django.http import JsonResponse
+from .models import Student
 
-def feedback(request):
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            # Отримуємо очищені дані
-            data = form.cleaned_data
-            
-            # Запис у файл feedback.txt
-            with open('feedback.txt', 'a', encoding='utf-8') as f:
-                f.write(f"Full Name: {data['full_name']}\n")
-                f.write(f"Email: {data.get('email', 'N/A')}\n")
-                f.write(f"Message: {data['message']}\n")
-                f.write(f"Rating: {data['rating']}\n")
-                f.write("-" * 20 + "\n")
-                
-            return render(request, 'feedback.html', {'form': form, 'success': True})
-    else:
-        form = FeedbackForm()
-        
-    return render(request, 'feedback.html', {'form': form})
+def create_students(request):
+    Student.objects.create(full_name="Олександр Іваненко", study_year=2, student_card="S123456789")
+    Student.objects.create(full_name="Марія Петренко", study_year=3, student_card="S987654321")
+    return JsonResponse({"status": "created"})
+
+def update_year(request, card):
+    student = Student.objects.filter(student_card=card).first()
+    if student:
+        student.study_year += 1
+        student.save()
+        return JsonResponse({"status": "updated"})
+    return JsonResponse({"status": "not found"})
+
+
+def remove_graduates(request):
+    Student.objects.filter(study_year=5).delete()
+    return JsonResponse({"status": "graduates removed"})
+
+
+def sorted_students(request):
+    students = Student.objects.order_by("-study_year")
+    data = list(students.values())
+    return JsonResponse(data, safe=False)
