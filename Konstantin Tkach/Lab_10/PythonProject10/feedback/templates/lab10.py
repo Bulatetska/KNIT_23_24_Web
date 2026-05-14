@@ -25,7 +25,7 @@ def run_lab_10():
         exists = Student.objects.filter(student_id=s_id).exists()
         return f"Студент з ID {s_id} знайдений." if exists else "Студента не знайдено."
 
-    print(check_student("S123456789"))  # Перевіряємо Олександра
+    print(check_student("S12456789"))  # Перевіряємо Олександра
 
     # 3. Групування та підрахунок студентів на кожному курсі
     print("\n--- 3. Кількість студентів по курсах ---")
