@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator
 
 
 class Student(models.Model):
@@ -14,16 +14,18 @@ class Student(models.Model):
 
     student_id = models.CharField(
         max_length=10,
-        unique=True
+        unique=True,
+        validators=[MinLengthValidator(10)]
     )
 
     def __str__(self):
         return self.full_name
 
-    class Course(models.Model):
-        course_name = models.CharField(max_length=200)
 
-        duration_hours = models.IntegerField()
+class Course(models.Model):
+    course_name = models.CharField(max_length=200)
 
-        def __str__(self):
-            return self.course_name
+    duration_hours = models.IntegerField()
+
+    def __str__(self):
+        return self.course_name
