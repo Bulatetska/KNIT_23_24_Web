@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель ORM</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .task-card { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: space-between;}
+        button { background-color: #2c3e50; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        button:hover { background-color: #34495e; }
+        input[type="text"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-right: 10px; }
+        .result-box { background-color: #e8f8f5; border-left: 5px solid #1abc9c; padding: 20px; margin-top: 30px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Панель керування завданнями ORM</h1>
+
+    <div class="task-card">
+        <span>1. Отримати список студентів 3 курсу</span>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="task" value="task1">
+            <button type="submit">Виконати</button>
+        </form>
+    </div>
+
+    <div class="task-card">
+        <span>2. Перевірити наявність за студентським квитком</span>
+        <form method="POST" style="display: flex;">
+            {% csrf_token %}
+            <input type="hidden" name="task" value="task2">
+            <input type="text" name="ticket_id" placeholder="Напр. ВНУ-001" required>
+            <button type="submit">Шукати</button>
+        </form>
+    </div>
+
+    <div class="task-card">
+        <span>3. Згрупувати студентів за курсами</span>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="task" value="task3">
+            <button type="submit">Підрахувати</button>
+        </form>
+    </div>
+
+    <div class="task-card">
+        <span>4. Студенти старше 2 курсу (SQL метод raw)</span>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="task" value="task4">
+            <button type="submit">Виконати raw()</button>
+        </form>
+    </div>
+
+    <div class="task-card">
+        <span>5. Курси > 100 годин (повернути як словник)</span>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="task" value="task5">
+            <button type="submit">Отримати словник</button>
+        </form>
+    </div>
+
+    {% if task_title %}
+    <div class="result-box">
+        <h3>{{ task_title }}</h3>
+        
+        {% if task_title == "Завдання 5: Курси > 100 годин (як словник)" or task_title == "Завдання 2: Перевірка студентського квитка" %}
+            <pre style="font-size: 16px;">{{ result_data }}</pre>
+        {% else %}
+            <ul>
+                {% for item in result_data %}
+                    <li style="font-size: 16px;">{{ item }}</li>
+                {% empty %}
+                    <li>Даних не знайдено.</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</body>
+</html>

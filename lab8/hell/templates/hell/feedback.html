@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Зворотній зв'язок</title>
+    <style>
+        .form-field { margin-bottom: 15px; }
+        .errorlist { color: red; list-style-type: none; padding: 0; }
+        .rating-input { width: 50px; font-weight: bold; }
+        .success-msg { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Залиште ваш відгук</h2>
+
+    {% if success %}
+        <p class="success-msg">Дякуємо! Ваш відгук збережено у feedback.txt.</p>
+    {% endif %}
+
+    {% if errors %}
+        <ul class="errorlist">
+            {% for field, error in errors %}
+                <li><strong>{{ field }}:</strong> {{ error|striptags }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-field">
+                <label>{{ field.label }}:</label><br>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit">Надіслати</button>
+    </form>
+</body>
+</html>
