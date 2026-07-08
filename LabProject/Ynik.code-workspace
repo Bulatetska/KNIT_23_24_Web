@@ -1,0 +1,57 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Ynik"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"bitset": "cpp",
+			"__bit_reference": "cpp",
+			"__locale": "cpp",
+			"__verbose_abort": "cpp",
+			"array": "cpp",
+			"cctype": "cpp",
+			"clocale": "cpp",
+			"cmath": "cpp",
+			"complex": "cpp",
+			"cstdarg": "cpp",
+			"cstddef": "cpp",
+			"cstdint": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"cstring": "cpp",
+			"ctime": "cpp",
+			"cwchar": "cpp",
+			"cwctype": "cpp",
+			"deque": "cpp",
+			"memory": "cpp",
+			"initializer_list": "cpp",
+			"ios": "cpp",
+			"iosfwd": "cpp",
+			"iostream": "cpp",
+			"istream": "cpp",
+			"limits": "cpp",
+			"locale": "cpp",
+			"mutex": "cpp",
+			"new": "cpp",
+			"optional": "cpp",
+			"print": "cpp",
+			"queue": "cpp",
+			"ratio": "cpp",
+			"sstream": "cpp",
+			"stack": "cpp",
+			"stdexcept": "cpp",
+			"streambuf": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"typeinfo": "cpp",
+			"variant": "cpp",
+			"vector": "cpp",
+			"algorithm": "cpp"
+		}
+	}
+}

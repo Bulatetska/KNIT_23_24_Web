@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин</title>
+    <style>
+        table { width: 50%; border-collapse: collapse; font-family: Arial; }
+        th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+        .empty { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Список товарів</h2>
+    <table>
+        <tr>
+            <th>Назва</th>
+            <th>Ціна</th>
+            <th>Склад</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+                {% if item.stock > 0 %}
+                    {{ item.stock }}
+                {% else %}
+                    <span class="empty">Немає в наявності</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

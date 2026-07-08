@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <title>Студенти</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .action-row { margin-bottom: 15px; }
+        form { display: inline-block; margin-right: 10px; }
+        .btn-sort { background-color: #28a745; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;}
+        .btn-del { background-color: #0d6efd; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;}
+    </style>
+</head>
+<body>
+    <h1>Управління студентами</h1>
+    
+    <div class="action-row">
+        <form method="POST">{% csrf_token %}<input type="hidden" name="action" value="add"><input type="text" name="name" placeholder="ПІБ" required> <input type="number" name="year" placeholder="Рік (1-5)" required> <input type="text" name="student_id" placeholder="Квиток" required> <button type="submit" class="btn-del">Додати</button></form>
+    </div>
+    
+    <div class="action-row">
+        <form method="POST">{% csrf_token %}<input type="hidden" name="action" value="update"><input type="text" name="student_id_update" placeholder="Квиток" required> <input type="number" name="new_year" placeholder="Новий рік" required> <button type="submit" class="btn-del">Оновити</button></form>
+    </div>
+
+    <div class="action-row">
+        <form method="POST">{% csrf_token %}<input type="hidden" name="action" value="remove_graduated"><button type="submit" class="btn-del">Видалити 5-й курс</button></form>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="sort">
+            <input type="hidden" name="sort_dir" value="{{ sort_dir|default:'desc' }}">
+            <button type="submit" class="btn-sort">Відсортувати за роком ↕️</button>
+        </form>
+    </div>
+
+    <table>
+        <tr><th>ПІБ</th><th>Рік навчання</th><th>Студентський квиток</th></tr>
+        {% for s in students %}
+        <tr><td>{{ s.name }}</td><td>{{ s.year }}</td><td>{{ s.student_id }}</td></tr>
+        {% empty %}
+        <tr><td colspan="3">Студентів поки немає.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
